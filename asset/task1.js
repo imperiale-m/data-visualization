@@ -1,5 +1,4 @@
 // Task 1
-
 const WIDTH = document.getElementById("task1").offsetWidth;
 const HEIGHT = 600;
 
@@ -20,10 +19,10 @@ const svg = d3
   .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
 // Data
-ad3.csv("../data/task1.csv", d3.autoType)
+d3.csv("../data/task1.csv", d3.autoType)
   .then(function (data) {
     // number of elements to plot
-    const N = 20;
+    const N = 10;
 
     data = data.slice(0, N);
 
@@ -32,16 +31,13 @@ ad3.csv("../data/task1.csv", d3.autoType)
     // max value for the x-axis
     const max = d3.max(data, d => d.count);
 
-    const x = d3
-      .scaleLinear()
-      .range([0, width * 0.95])
-      .domain([0, max]);
+    const x = d3.scaleLinear().range([0, width]).domain([0, max]).nice();
 
     const y = d3
       .scaleBand()
       .range([0, height])
       .domain(data.map(d => d.name))
-      .padding(0.1);
+      .padding(0.05);
 
     // plot the x-axis
     svg
@@ -54,31 +50,21 @@ ad3.csv("../data/task1.csv", d3.autoType)
     // plot the y-axis
     svg.append("g").call(d3.axisLeft(y));
 
-    const tooltip = d3
-      .select("#task1")
-      .append("div")
-      .style("opacity", 0)
-      .attr("class", "tooltip")
-      .style("background-color", "white")
-      .style("position", "absolute")
-      .style("border", "solid")
-      .style("border-width", "1px")
-      .style("border-radius", "5px")
-      .style("padding", "8px");
+    const tooltip = d3.select("#tooltip1");
 
     const mouseover = function () {
-      tooltip.style("opacity", 1);
-      d3.select(this).style("stroke", "black").style("opacity", 1);
+      tooltip.style("opacity", 0.9);
+      d3.select(this).style("stroke", "black");
     };
 
     const mouseout = function () {
       tooltip.style("opacity", 0);
-      d3.select(this).style("stroke", "none").style("opacity", 0.8);
+      d3.select(this).style("stroke", "none");
     };
 
     const mousemove = function (event, d) {
       tooltip
-        .html("The mean canopy size is: " + d["mean_canopy_size"])
+        .html("Count = " + d["count"] + "<br>Mean canopy size = " + d["mean_canopy_size"])
         .style("top", event.pageY + "px")
         .style("left", event.pageX + 20 + "px");
     };
@@ -87,7 +73,7 @@ ad3.csv("../data/task1.csv", d3.autoType)
       .selectAll("rect")
       .data(data)
       .join("rect")
-      .attr("x", 0)
+      .attr("x", 0.5)
       .attr("y", d => y(d.name))
       .attr("width", d => x(d.count))
       .attr("height", y.bandwidth())
