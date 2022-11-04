@@ -10,7 +10,7 @@ const margin = { top: 40, right: 40, bottom: 40, left: l };
 width = WIDTH - margin.left - margin.right;
 height = HEIGHT - margin.top - margin.bottom;
 
-// append the svg object to the body of the page
+// append the svg object to the div with id #task1
 const svg = d3.select("#task1")
   .append("svg")
   .attr("width", width + margin.left + margin.right)
@@ -21,11 +21,14 @@ const svg = d3.select("#task1")
 // Data
 d3.csv("../data/task1.csv", d3.autoType).then(function(data) {
 
+  // number of elements to plot
   const N = 20;
+
   data = data.slice(0, N);
 
   // console.log(data);
 
+  // max value for the x-axis
   const max = d3.max(data, d => d.count);
 
   const x = d3.scaleLinear()
@@ -37,12 +40,14 @@ d3.csv("../data/task1.csv", d3.autoType).then(function(data) {
     .domain(data.map(d => d.name))
     .padding(.1);
 
+  // plot the x-axis
   svg.append("g")
     .attr("transform", `translate(0, ${height})`)
     .call(d3.axisBottom(x))
     .selectAll("text")
     .style("text-anchor", "end");
 
+  // plot the y-axis
   svg.append("g")
     .call(d3.axisLeft(y));
 
@@ -75,7 +80,7 @@ d3.csv("../data/task1.csv", d3.autoType).then(function(data) {
 
   const mousemove = function(event, d) {
     tooltip
-      .html("The mean canopy size is: " + d.mean_canopy_size)
+      .html("The mean canopy size is: " + d['mean_canopy_size'])
       .style("top", (event.pageY) + "px")
       .style("left", (event.pageX + 20) + "px");
   };
