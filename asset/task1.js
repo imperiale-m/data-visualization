@@ -19,7 +19,7 @@ const svg = d3.select("#task1")
   .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
 // Data
-d3.csv("/data/task1.csv", d3.autoType).then(function(data) {
+d3.csv("../data/task1.csv", d3.autoType).then(function(data) {
 
   const N = 20;
   data = data.slice(0, N);
