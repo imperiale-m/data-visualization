@@ -18,7 +18,7 @@ const svg2 = d3
   .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
 // Data
-d3.csv("/data/task2.csv", d3.autoType)
+d3.csv("../data/task2.csv", d3.autoType)
   .then(function (data) {
     // console.log(data);
 
