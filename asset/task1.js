@@ -1,8 +1,8 @@
 // Task 1
-const WIDTH = document.getElementById("task1").offsetWidth;
+let WIDTH = document.getElementById("task1").offsetWidth;
 const HEIGHT = 600;
 
-let l = Math.floor(WIDTH / 5);
+let l = Math.floor(WIDTH / 4);
 // console.log(l)
 
 const margin = { top: 40, right: 40, bottom: 40, left: l };
@@ -37,7 +37,7 @@ d3.csv("../data/task1.csv", d3.autoType)
       .scaleBand()
       .range([0, height])
       .domain(data.map(d => d.name))
-      .padding(0.05);
+      .padding(0.06);
 
     // plot the x-axis
     svg
@@ -54,12 +54,12 @@ d3.csv("../data/task1.csv", d3.autoType)
 
     const mouseover = function () {
       tooltip.style("opacity", 0.9);
-      d3.select(this).style("stroke", "black");
+      d3.select(this).style("stroke", "black").attr("fill", "Gold");
     };
 
     const mouseout = function () {
       tooltip.style("opacity", 0);
-      d3.select(this).style("stroke", "none");
+      d3.select(this).style("stroke", "none").attr("fill", "teal");
     };
 
     const mousemove = function (event, d) {
@@ -77,7 +77,7 @@ d3.csv("../data/task1.csv", d3.autoType)
       .attr("y", d => y(d.name))
       .attr("width", d => x(d.count))
       .attr("height", y.bandwidth())
-      .attr("fill", "orange")
+      .attr("fill", "teal")
       .on("mouseover", mouseover)
       .on("mouseout", mouseout)
       .on("mousemove", mousemove);
