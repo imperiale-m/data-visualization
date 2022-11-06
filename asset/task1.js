@@ -2,9 +2,10 @@
 let WIDTH = document.getElementById("task1").offsetWidth;
 let HEIGHT = window.innerHeight * 0.65;
 let l = Math.floor(WIDTH / 3.5);
-// console.log(l)
+let r = Math.floor(WIDTH / 9);
+// console.log(r)
 
-const margin = { top: 40, right: 40, bottom: 40, left: l };
+const margin = { top: 40, right: r, bottom: 40, left: l };
 width = WIDTH - margin.left - margin.right;
 height = HEIGHT - margin.top - margin.bottom;
 
@@ -15,7 +16,7 @@ const svg = d3
   .attr("width", width + margin.left + margin.right)
   .attr("height", height + margin.top + margin.bottom)
   .append("g")
-  .attr("transform", `translate(${margin.left}, ${margin.top})`);
+  .attr("transform", `translate(${margin.left}, ${margin.bottom})`);
 
 // Data
 d3.csv("../data/task1.csv", d3.autoType)

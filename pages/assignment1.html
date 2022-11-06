@@ -15,9 +15,9 @@
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="../asset/task1.js" defer></script>
     <script src="../asset/task2.js" defer></script>
-    <script src="../asset/task3.js" defer></script>
+    <!--    <script src="../asset/task3.js" defer></script>-->
     <script src="../asset/task4.js" defer></script>
-    <script src="../asset/task5.js" defer></script>
+    <!--    <script src="../asset/task5.js" defer></script>-->
 
     <script>
       function changeTab(ta, tabID) {
@@ -48,7 +48,7 @@
       <div class="container mx-auto px-4 py-6 text-center">
         <h1 class="py-4 text-4xl font-bold">Assignment 1</h1>
         <ul
-          class="mx-auto w-2/5 divide-x divide-gray-700 pt-8 pb-4 text-center font-medium text-pink-700 sm:flex">
+          class="mx-auto w-2/4 divide-x divide-gray-700 pt-8 pb-4 text-center font-medium text-pink-700 sm:flex">
           <li class="w-full">
             <button
               id="tab1"
@@ -91,26 +91,36 @@
           </li>
         </ul>
         <div id="task1" class="tab-content mx-auto my-4 mx-4 block md:mx-8 xl:mx-48">
+          <p class="text-2xl font-bold">Barchart</p>
+          <p class="text-xl">Tree types sorted by abundance</p>
           <div
             id="tooltip1"
             class="absolute rounded-lg border border-black bg-white p-2 text-sm opacity-0"></div>
         </div>
         <div id="task2" class="tab-content mx-auto my-4 mx-4 hidden md:mx-8 xl:mx-48">
+          <p class="text-2xl font-bold">Stacked Barchart</p>
+          <p class="text-xl">Top-5 tree types + other</p>
           <div
             id="tooltip2"
             class="absolute rounded-lg border border-black bg-white p-2 opacity-0"></div>
         </div>
         <div id="task3" class="tab-content mx-auto my-4 mx-4 hidden md:mx-8 xl:mx-48">
+          <p class="text-2xl font-bold">Barchart</p>
+          <p class="text-xl">Stacked Barchart with small multiple</p>
           <div
             id="tooltip3"
             class="absolute rounded-lg border border-black bg-white p-2 opacity-0"></div>
         </div>
         <div id="task4" class="tab-content mx-auto my-4 mx-4 hidden md:mx-8 xl:mx-48">
+          <p class="text-2xl font-bold">Stacked Barchart</p>
+          <p class="text-xl">Top-5 tree types + other (percentage)</p>
           <div
             id="tooltip4"
             class="absolute rounded-lg border border-black bg-white p-2 opacity-0"></div>
         </div>
         <div id="task5" class="tab-content mx-auto my-4 mx-4 hidden md:mx-8 xl:mx-48">
+          <p class="text-2xl font-bold">Waffle Chart</p>
+          <p class="text-xl">Each waffle is a neighborhood colored according to 5 category</p>
           <div
             id="tooltip5"
             class="absolute rounded-lg border border-black bg-white p-2 opacity-0"></div>
