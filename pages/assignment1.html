@@ -15,19 +15,12 @@
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="../asset/task1.js" defer></script>
     <script src="../asset/task2.js" defer></script>
+    <script src="../asset/task3.js" defer></script>
+    <script src="../asset/task4.js" defer></script>
+    <script src="../asset/task5.js" defer></script>
 
     <script>
       function changeTab(ta, tabID) {
-        // let element = event.target;
-        // while (element.nodeName !== "A") {
-        //   element = element.parentNode;
-        // }
-        // const ulElement = element.parentNode.parentNode;
-        // const aElements = ulElement.querySelectorAll("li > a");
-        // const tabContents = document
-        //   .getElementById("tabs-id")
-        //   .querySelectorAll(".tab-content > div");
-
         const aElements = document.querySelectorAll(".tab");
         const tabContents = document.querySelectorAll(".tab-content");
 
@@ -57,19 +50,49 @@
         <ul
           class="mx-auto w-2/5 divide-x divide-gray-700 pt-8 pb-4 text-center font-medium text-pink-700 sm:flex">
           <li class="w-full">
-            <a id="tab1" href="#" onclick="changeTab('tab1','task1')" class="tab">task1</a>
+            <a
+              id="tab1"
+              href="#"
+              onclick="changeTab('tab1','task1')"
+              class="tab bg-pink-600 text-white">
+              Task 1
+            </a>
           </li>
           <li class="w-full">
-            <a id="tab2" href="#" onclick="changeTab('tab2','task2')" class="tab">task2</a>
+            <a
+              id="tab2"
+              href="#"
+              onclick="changeTab('tab2','task2')"
+              class="tab bg-gray-100 text-pink-700">
+              Task 2
+            </a>
           </li>
           <li class="w-full">
-            <a id="tab3" href="#" onclick="changeTab('tab3','task3')" class="tab">task3</a>
+            <a
+              id="tab3"
+              href="#"
+              onclick="changeTab('tab3','task3')"
+              class="tab bg-gray-100 text-pink-700">
+              Task 3
+            </a>
           </li>
           <li class="w-full">
-            <a id="tab4" href="#" onclick="changeTab('tab4','task4')" class="tab">task4</a>
+            <a
+              id="tab4"
+              href="#"
+              onclick="changeTab('tab4','task4')"
+              class="tab bg-gray-100 text-pink-700">
+              Task 4
+            </a>
           </li>
           <li class="w-full">
-            <a id="tab5" href="#" onclick="changeTab('tab5','task5')" class="tab">task5</a>
+            <a
+              id="tab5"
+              href="#"
+              onclick="changeTab('tab5','task5')"
+              class="tab bg-gray-100 text-pink-700">
+              Task 5
+            </a>
           </li>
         </ul>
         <div id="task1" class="tab-content mx-auto my-4 mx-4 block md:mx-8 xl:mx-48">
