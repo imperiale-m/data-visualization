@@ -1,8 +1,7 @@
 // Task 1
 let WIDTH = document.getElementById("task1").offsetWidth;
-const HEIGHT = 600;
-
-let l = Math.floor(WIDTH / 4);
+let HEIGHT = window.innerHeight * 0.65;
+let l = Math.floor(WIDTH / 3.5);
 // console.log(l)
 
 const margin = { top: 40, right: 40, bottom: 40, left: l };
@@ -48,7 +47,7 @@ d3.csv("../data/task1.csv", d3.autoType)
       .style("text-anchor", "end");
 
     // plot the y-axis
-    svg.append("g").call(d3.axisLeft(y));
+    svg.append("g").call(d3.axisLeft(y)).select(".domain").remove();
 
     const tooltip = d3.select("#tooltip1");
 
