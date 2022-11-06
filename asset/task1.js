@@ -1,6 +1,6 @@
 // Task 1
 let WIDTH = document.getElementById("task1").offsetWidth;
-let HEIGHT = window.innerHeight * 0.65;
+let HEIGHT = window.innerHeight * 0.60;
 let l = Math.floor(WIDTH / 3.5);
 let r = Math.floor(WIDTH / 9);
 // console.log(r)
