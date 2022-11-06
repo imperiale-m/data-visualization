@@ -14,7 +14,7 @@ d3.csv("../data/task2.csv", d3.autoType)
     const dataColumns = Object.keys(data[0]);
     // console.log(dataColumns);
 
-    // List of subgroups = header of the csv files = soil condition here
+    // List of subgroups
     const subgroups = dataColumns.slice(1);
 
     const groups = data.map(d => d["district"]);
