@@ -1,13 +1,4 @@
 // Task 2
-// const WIDTH = document.getElementById("task2").offsetWidth;
-// const HEIGHT = 600;
-//
-// const l = Math.floor(WIDTH / 4);
-// // console.log(l)
-//
-// const margin = { top: 40, right: 40, bottom: 40, left: l };
-// width = WIDTH - margin.left - margin.right;
-// height = HEIGHT - margin.top - margin.bottom;
 
 const svg2 = d3
   .select("#task2")
@@ -51,13 +42,34 @@ d3.csv("../data/task2.csv", d3.autoType)
       .selectAll("text")
       .style("text-anchor", "end");
 
-    svg2.append("g").call(d3.axisLeft(y));
+    svg2.append("g").call(d3.axisLeft(y)).select(".domain").remove();
 
     const color = d3
       .scaleOrdinal()
       .domain(subgroups)
-      // The first 5 colors from Category10 + #cccccc (gray) for the last one
-      .range(["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#cccccc"]);
+      .range(["#ebac23", "#b80058", "#878500", "#006e00", "#b24502", "#bdbdbd"]);
+
+    const tooltip = d3.select("#tooltip2");
+
+    const mouseover = function () {
+      tooltip.style("opacity", 0.9);
+      d3.select(this).style("stroke", "black");
+    };
+
+    const mouseout = function () {
+      tooltip.style("opacity", 0);
+      d3.select(this).style("stroke", "none");
+    };
+
+    const mousemove = function (event, d) {
+      const subgroupName = d3.select(this.parentNode).datum().key;
+      const subgroupValue = d.data[subgroupName];
+      tooltip
+        .html("Tree type = " + subgroupName + "<br>Count = " + subgroupValue)
+        .style("top", event.pageY + "px")
+        .style("left", event.pageX + 20 + "px");
+    };
+
     svg2
       .append("g")
       .selectAll("g")
@@ -72,31 +84,10 @@ d3.csv("../data/task2.csv", d3.autoType)
       .attr("y", d => y(d.data["district"]))
       .attr("x", d => x(d[0]))
       .attr("width", d => x(d[1]) - x(d[0]))
-      .attr("height", y.bandwidth());
-    // .attr("stroke", "black");
-
-    // const tooltip = d3.select("#task1")
-    //   .append("div")
-    //   .style("opacity", 0)
-    //   .attr("class", "tooltip")
-    //   .style("background-color", "white")
-    //   .style("position", "absolute")
-    //   .style("border", "solid")
-    //   .style("border-width", "1px")
-    //   .style("border-radius", "5px")
-    //   .style("padding", "8px");
-
-    // svg.selectAll("rect")
-    //   .data(data)
-    //   .join("rect")
-    //   .attr("x", 0)
-    //   .attr("y", d => y(d['district']))
-    //   .attr("width", d => x(d['others']))
-    //   .attr("height", y.bandwidth())
-    //   .attr("fill", "orange")
-    // .on("mouseover", mouseover)
-    // .on("mouseout", mouseout)
-    // .on("mousemove", mousemove);
+      .attr("height", y.bandwidth())
+      .on("mouseover", mouseover)
+      .on("mouseout", mouseout)
+      .on("mousemove", mousemove);
   })
   .catch(e2 => {
     console.log(e2);
