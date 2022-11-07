@@ -1,13 +1,13 @@
 // Task 1
-let WIDTH = document.getElementById("task1").offsetWidth;
-let HEIGHT = window.innerHeight * 0.60;
-let l = Math.floor(WIDTH / 3.5);
-let r = Math.floor(WIDTH / 9);
+const WIDTH = document.getElementById("task1").offsetWidth;
+const HEIGHT = window.innerHeight * 0.6;
+const l = Math.floor(WIDTH / 3.5);
+const r = Math.floor(WIDTH / 9);
 // console.log(r)
 
 const margin = { top: 40, right: r, bottom: 40, left: l };
-width = WIDTH - margin.left - margin.right;
-height = HEIGHT - margin.top - margin.bottom;
+const width = WIDTH - margin.left - margin.right;
+const height = HEIGHT - margin.top - margin.bottom;
 
 // append the svg object to the div with id #task1
 const svg = d3

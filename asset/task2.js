@@ -27,11 +27,7 @@ d3.csv("../data/task2.csv", d3.autoType)
     const max = d3.max(stackedData[stackedData.length - 1], d => d[1]);
     // console.log(max);
 
-    const x = d3
-      .scaleLinear()
-      .range([0, width * 0.95])
-      .domain([0, max])
-      .nice();
+    const x = d3.scaleLinear().range([0, width]).domain([0, max]).nice();
 
     const y = d3.scaleBand().range([0, height]).domain(groups).padding(0.1);
 
