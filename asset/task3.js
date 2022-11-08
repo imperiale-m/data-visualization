@@ -1,6 +1,6 @@
 // Data
 d3.csv("../data/task3.csv", d3.autoType).then(function (data) {
-  // console.log(data);
+  console.log(data);
 
   const WIDTH3 = document.getElementById("task1").offsetWidth;
   const HEIGHT3 = window.innerHeight * 0.6;
@@ -19,17 +19,21 @@ d3.csv("../data/task3.csv", d3.autoType).then(function (data) {
     .append("g")
     .attr("transform", `translate(${margin3.left}, ${margin3.bottom})`);
 
-  console.log(Object.keys(data[0]).slice(1));
+  // console.log(Object.keys(data[0]).slice(1));
 
   const N = 5;
 
+  let arr = []
+  for (let i = 0; i < N; i++) {
+    arr = [...arr, ...Object.values(data[i]).slice(1)];
+  }
+  // console.log(arr)
+
+  const max = d3.max(arr);
+  // console.log("max", max);
+
   for (let i = 0; i < N; i++) {
     const xx = Object.keys(data[i]).slice(1);
-
-    // console.log(Object.values(data[0]).slice(1));
-    const max = d3.max(Object.values(data[i]).slice(1));
-
-    // console.log(max);
 
     const x = d3
       .scaleLinear()
@@ -42,7 +46,7 @@ d3.csv("../data/task3.csv", d3.autoType).then(function (data) {
     svg3
       .append("g")
       .attr("transform", `translate(${(width3 / 5) * i}, ${height3})`)
-      .call(d3.axisBottom(x))
+      .call(d3.axisBottom(x).ticks(4))
       .selectAll("text")
       .attr("transform", "translate(-15,5)rotate(-70)")
       .style("text-anchor", "end");
@@ -53,15 +57,12 @@ d3.csv("../data/task3.csv", d3.autoType).then(function (data) {
 
     const colors = ["#ebac23", "#b80058", "#878500", "#006e00", "#b24502", "#bdbdbd"];
 
-    console.log(Object.values(data[i]).slice(0, 1));
     svg3
       .append("text")
       .attr("transform", `translate(${(width3 / 5) * i}, ${-30})`)
       .attr("class", "font-bold text-base graph-title")
       .style("fill", colors[i])
       .text(Object.values(data[i]).slice(0, 1));
-
-    console.log(Object.entries(data[i]));
 
     svg3
       .selectAll("rect" + i)
