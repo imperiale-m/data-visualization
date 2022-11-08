@@ -1,26 +1,26 @@
 // Task 1
 const WIDTH = document.getElementById("task1").offsetWidth;
 const HEIGHT = window.innerHeight * 0.6;
-const l = Math.floor(WIDTH / 3.5);
-const r = Math.floor(WIDTH / 9);
+const l = Math.floor(WIDTH / 4);
+const r = Math.floor(WIDTH / 10);
 // console.log(r)
 
-const margin = { top: 40, right: r, bottom: 40, left: l };
+const margin = { top: 40, right: r, bottom: 60, left: l };
 const width = WIDTH - margin.left - margin.right;
 const height = HEIGHT - margin.top - margin.bottom;
 
-// append the svg object to the div with id #task1
-const svg = d3
-  .select("#task1")
-  .append("svg")
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-  .attr("transform", `translate(${margin.left}, ${margin.bottom})`);
-
 // Data
-d3.csv("../data/task1.csv", d3.autoType)
+d3.csv("../data/data1.csv", d3.autoType)
   .then(function (data) {
+    // append the svg object to the div with id #task1
+    const svg = d3
+      .select("#task1")
+      .append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
     // number of elements to plot
     const N = 10;
 
@@ -45,6 +45,7 @@ d3.csv("../data/task1.csv", d3.autoType)
       .attr("transform", `translate(0, ${height})`)
       .call(d3.axisBottom(x))
       .selectAll("text")
+      .attr("transform", "translate(-10,0)rotate(-45)")
       .style("text-anchor", "end");
 
     // plot the y-axis

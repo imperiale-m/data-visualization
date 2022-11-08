@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Assignment 1</title>
+    <title>Assignment 1 - Comparing Categories</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="../style.css" rel="stylesheet" />
@@ -44,12 +44,11 @@
   </head>
 
   <body>
-    <div class="container mx-auto bg-white">
-      <div class="container mx-auto px-4 py-6 text-center">
-        <h1 class="py-4 text-4xl font-bold">Assignment 1</h1>
-        <ul
-          class="mx-auto w-2/4 divide-x divide-gray-700 pt-8 pb-4 text-center font-medium text-pink-700 sm:flex">
-          <li class="w-full">
+    <div class="mx-auto w-11/12 min-w-[768px] bg-white">
+      <div class="mx-auto px-4 py-6 text-center">
+        <h1 class="py-4 text-4xl font-bold">Assignment 1 - Comparing Categories</h1>
+        <ul class="mx-auto w-2/3 p-4 text-center font-medium text-pink-700 sm:flex">
+          <li class="w-full border border-pink-900">
             <button
               id="tab1"
               onclick="changeTab('tab1','task1')"
@@ -57,7 +56,7 @@
               Task 1
             </button>
           </li>
-          <li class="w-full">
+          <li class="w-full border border-pink-900">
             <button
               id="tab2"
               onclick="changeTab('tab2','task2')"
@@ -65,7 +64,7 @@
               Task 2
             </button>
           </li>
-          <li class="w-full">
+          <li class="w-full border border-pink-900">
             <button
               id="tab3"
               onclick="changeTab('tab3','task3')"
@@ -73,7 +72,7 @@
               Task 3
             </button>
           </li>
-          <li class="w-full">
+          <li class="w-full border border-pink-900">
             <button
               id="tab4"
               onclick="changeTab('tab4','task4')"
@@ -81,7 +80,7 @@
               Task 4
             </button>
           </li>
-          <li class="w-full">
+          <li class="w-full border border-pink-900">
             <button
               id="tab5"
               onclick="changeTab('tab5','task5')"
@@ -127,16 +126,17 @@
         </div>
       </div>
       <footer aria-label="Footer" class="bg-white">
-        <div class="border-t border-gray-100 p-6">
-          <div class="text-center sm:flex sm:justify-between sm:text-left">
-            <p class="text-sm text-gray-500">
-              <span class="block sm:inline">All rights reserved</span>
-            </p>
-
-            <p class="mt-2 text-sm text-gray-500 sm:order-first sm:mt-0">
-              &copy; 2022 Massimiliano Imperiale
-            </p>
-          </div>
+        <div
+          class="border-t border-gray-100 p-6 text-center sm:flex sm:justify-between sm:text-left">
+          <p class="text-sm text-gray-500">
+            <span class="block sm:inline">All rights reserved</span>
+          </p>
+          <p class="mt-2 text-sm text-gray-500 sm:order-first sm:mt-0">
+            &copy; 2022 Massimiliano Imperiale
+          </p>
+          <p class="mt-2 text-sm text-gray-500 sm:order-first sm:mt-0">
+            <a href="../index.html" class="text-blue-600 underline hover:text-blue-800">Home</a>
+          </p>
         </div>
       </footer>
     </div>

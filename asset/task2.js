@@ -1,17 +1,17 @@
 // Task 2
 
-const svg2 = d3
-  .select("#task2")
-  .append("svg")
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-  .attr("transform", `translate(${margin.left}, ${margin.bottom})`);
-
 // Data
-d3.csv("../data/task2.csv", d3.autoType)
+d3.csv("../data/data2.csv", d3.autoType)
   .then(function (data) {
     // console.log(data);
+
+    const svg2 = d3
+      .select("#task2")
+      .append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
     const dataColumns = Object.keys(data[0]);
     // console.log(dataColumns);
@@ -36,6 +36,7 @@ d3.csv("../data/task2.csv", d3.autoType)
       .attr("transform", `translate(0, ${height})`)
       .call(d3.axisBottom(x))
       .selectAll("text")
+      .attr("transform", "translate(-10,0)rotate(-45)")
       .style("text-anchor", "end");
 
     svg2.append("g").call(d3.axisLeft(y)).select(".domain").remove();
