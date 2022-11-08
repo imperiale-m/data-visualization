@@ -22,7 +22,7 @@ d3.csv("../data/task2.csv", d3.autoType)
     const groups = data.map(d => d["district"]);
     // console.log(groups);
 
-    const stackedData = d3.stack().keys(subgroups)(data);
+    const stackedData = d3.stack().order(d3.stackOrderNone).keys(subgroups)(data);
 
     const max = d3.max(stackedData[stackedData.length - 1], d => d[1]);
     // console.log(max);
