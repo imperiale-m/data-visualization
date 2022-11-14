@@ -3,117 +3,150 @@
   <head>
     <title>Assignment 1 - Comparing Categories</title>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <link href="../style.css" rel="stylesheet" />
 
     <!-- Roboto Slab & Fira Sans -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
     <link
       href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Roboto+Slab"
       rel="stylesheet" />
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="../asset/task1.js" defer></script>
-    <script src="../asset/task2.js" defer></script>
-    <script src="../asset/task3.js" defer></script>
-    <script src="../asset/task4.js" defer></script>
-    <!--    <script src="../asset/task5.js" defer></script>-->
-    <script src="../asset/changeTab.js" defer></script>
+    <script defer src="../asset/task1.js"></script>
+    <script defer src="../asset/task2.js"></script>
+    <script defer src="../asset/task3.js"></script>
+    <script defer src="../asset/task4.js"></script>
+    <script defer src="../asset/task5.js"></script>
   </head>
 
-  <body>
-    <div class="mx-auto w-11/12 min-w-[768px] bg-white">
-      <div class="mx-auto px-4 py-6 text-center">
-        <h1 class="py-4 text-4xl font-bold">Assignment 1 - Comparing Categories</h1>
-        <ul class="mx-auto w-2/3 p-4 text-center font-medium text-pink-700 sm:flex">
-          <li class="w-full border border-pink-900">
-            <button
-              id="tab1"
-              onclick="changeTab('tab1','task1')"
-              class="tab bg-pink-600 text-white">
-              Task 1
-            </button>
-          </li>
-          <li class="w-full border border-pink-900">
-            <button
-              id="tab2"
-              onclick="changeTab('tab2','task2')"
-              class="tab bg-gray-100 text-pink-700">
-              Task 2
-            </button>
-          </li>
-          <li class="w-full border border-pink-900">
-            <button
-              id="tab3"
-              onclick="changeTab('tab3','task3')"
-              class="tab bg-gray-100 text-pink-700">
-              Task 3
-            </button>
-          </li>
-          <li class="w-full border border-pink-900">
-            <button
-              id="tab4"
-              onclick="changeTab('tab4','task4')"
-              class="tab bg-gray-100 text-pink-700">
-              Task 4
-            </button>
-          </li>
-          <li class="w-full border border-pink-900">
-            <button
-              id="tab5"
-              onclick="changeTab('tab5','task5')"
-              class="tab bg-gray-100 text-pink-700">
-              Task 5
-            </button>
-          </li>
-        </ul>
-        <div id="task1" class="tab-content mx-auto my-4 mx-4 block md:mx-8 xl:mx-48">
-          <p class="text-2xl font-bold">Barchart</p>
-          <p class="text-xl">Tree types sorted by abundance</p>
-          <div
-            id="tooltip1"
-            class="absolute rounded-lg border border-black bg-white p-2 text-sm opacity-0"></div>
-        </div>
-        <div id="task2" class="tab-content mx-auto my-4 mx-4 hidden md:mx-8 xl:mx-48">
-          <p class="text-2xl font-bold">Stacked Barchart</p>
-          <p class="text-xl">Top-5 tree types + other</p>
-          <div
-            id="tooltip2"
-            class="absolute rounded-lg border border-black bg-white p-2 opacity-0"></div>
-        </div>
-        <div id="task3" class="tab-content mx-auto my-4 mx-4 hidden md:mx-8 xl:mx-48">
-          <p class="text-2xl font-bold">Barchart</p>
-          <p class="text-xl">Stacked Barchart with small multiple</p>
-          <div
-            id="tooltip3"
-            class="absolute rounded-lg border border-black bg-white p-2 opacity-0"></div>
-        </div>
-        <div id="task4" class="tab-content mx-auto my-4 mx-4 hidden md:mx-8 xl:mx-48">
-          <p class="text-2xl font-bold">Stacked Barchart</p>
-          <p class="text-xl">Top-5 tree types + other (percentage)</p>
-          <div
-            id="tooltip4"
-            class="absolute rounded-lg border border-black bg-white p-2 opacity-0"></div>
-        </div>
-        <div id="task5" class="tab-content mx-auto my-4 mx-4 hidden md:mx-8 xl:mx-48">
-          <p class="text-2xl font-bold">Waffle Chart</p>
-          <p class="text-xl">Each waffle is a neighborhood colored according to 5 category</p>
-          <div
-            id="tooltip5"
-            class="absolute rounded-lg border border-black bg-white p-2 opacity-0"></div>
-        </div>
+  <body class="min-h-screen">
+    <div class="mx-auto grid grid-cols-1 gap-4 bg-white px-10 pt-12 md:grid-cols-3 lg:w-11/12">
+      <div class="col-span-1 mb-[2%] text-center text-3xl font-bold md:col-span-3 md:text-4xl">
+        <h1 class="text-stone-900">Assignment 1</h1>
+        <p class="text-stone-900">Comparing Categories</p>
       </div>
-      <footer aria-label="Footer" class="bg-white">
+      <!--TASK 1-->
+      <div class="col-span-1 md:col-span-2">
+        <div>
+          <p class="ml-[24%] text-xl font-bold lg:text-2xl">
+            <span class="text-green-800">Celtis Australis</span>
+            is the most common tree in Trento
+          </p>
+          <p class="ml-[24%] text-sm lg:text-base">Top 10 trees species in Trento</p>
+        </div>
+        <div class="mx-auto" id="task1"></div>
+      </div>
+      <div class="col-span-1 ml-[24%] pr-[14%] md:ml-0 md:py-[50%] md:pl-[20%]">
+        <p class="text-base font-bold text-stone-700">Bar chart</p>
+        <p class="text-sm text-stone-600">
+          Bar charts are a good way to compare values quickly and accurately. In this case I used a
+          horizontal bar chart because this way it's easier to read the species. Celtis Australis is
+          highlighted because I used it in the title and the bars are sorted for easier comparing.
+        </p>
+      </div>
+      <!--TASK 2-->
+      <div class="col-span-1 mt-8 md:col-span-2">
+        <div>
+          <p class="ml-[24%] text-xl font-bold lg:text-2xl">
+            A lot of different trees species in Trento
+          </p>
+          <p class="ml-[24%] text-sm lg:text-base">Tree species by district</p>
+        </div>
+        <div class="mx-auto" id="task2"></div>
+      </div>
+      <div class="col-span-1 ml-[24%] pr-[14%] md:ml-0 md:py-[50%] md:pl-[20%]">
+        <p class="text-base font-bold text-neutral-700">Stacked bar chart</p>
+        <p class="text-sm text-neutral-600">
+          Stacked bar charts are a variation of bar charts that subdivides the data within each
+          category. In this case we are looking at the top 5 species (+ others) for each district.
+          In this case the categories sum to the total, so it's easier to compare them in absolute
+          terms. It may be more difficult to compare the segments within though.
+        </p>
+      </div>
+      <!--TASK 3-->
+      <div class="col-span-1 mt-8 md:col-span-2">
+        <div>
+          <p class="ml-[24%] text-xl font-bold lg:text-2xl">
+            <span class="text-sky-700">Celtis Australis</span>
+            is the most widespread tree in Trento
+          </p>
+          <p class="ml-[24%] text-sm lg:text-base">Tree species by district</p>
+        </div>
+        <div class="mx-auto" id="task3"></div>
+      </div>
+      <div class="col-span-1 ml-[24%] pr-[14%] md:ml-0 md:py-[50%] md:pl-[20%]">
+        <p class="text-base font-bold text-neutral-700">Small multiples</p>
+        <p class="text-sm text-neutral-600">
+          Small multiples are great if we want to compare values across the districts in a certain
+          category. The side effect is that is usually harder (or impossible) to see the total. In
+          this case I had to remove both the total and the other category to make it more readable.
+          We can also sort a category to highlight it, but I didn't.
+        </p>
+      </div>
+      <!--TASK 4-->
+      <div class="col-span-1 mt-8 md:col-span-2">
+        <div>
+          <p class="ml-[24%] text-xl font-bold lg:text-2xl">
+            A lot of different trees species in Trento
+          </p>
+          <p class="ml-[24%] text-sm lg:text-base">
+            The percentage of tree population occupied by the top 5 most common species in each
+            district in Trento
+          </p>
+        </div>
+        <div class="mx-auto" id="task4"></div>
+      </div>
+      <div class="col-span-1 ml-[24%] pr-[14%] md:ml-0 md:py-[50%] md:pl-[20%]">
+        <p class="text-base font-bold text-neutral-700">Stacked percent barchart</p>
+        <p class="text-sm text-neutral-600">
+          This time the categories sum to 100 percent, therefore we can better see the distribution
+          of species in a district.
+        </p>
+      </div>
+      <!--TASK 5-->
+      <div class="col-span-1 mt-8 md:col-span-2">
+        <div>
+          <p class="ml-[24%] text-xl font-bold lg:text-2xl">
+            A lot of different trees species in Trento
+          </p>
+          <p class="ml-[24%] text-sm lg:text-base">
+            The percentage of tree population occupied by the top 5 most common species in each
+            district in Trento
+          </p>
+        </div>
+        <div class="mt-[2%]">
+          <label
+            class="ml-[24%] mb-1 block text-sm font-bold text-stone-900 md:text-base"
+            for="selectButton">
+            Select a district
+          </label>
+          <select
+            class="ml-[24%] block border border-stone-300 bg-stone-100 text-sm text-stone-800 md:text-xl"
+            id="selectButton"></select>
+        </div>
+
+        <div class="mx-auto" id="task5"></div>
+      </div>
+      <div class="col-span-1 ml-[24%] pr-[14%] md:ml-0 md:py-[50%] md:pl-[20%]">
+        <p class="text-base font-bold text-neutral-700">Waffle chart</p>
+        <p class="text-sm text-neutral-600">
+          Waffle charts are a way to display part of a whole. Each square represents more or less 1%
+          of the total, because there will be some errors due to quantization.
+        </p>
+      </div>
+      <!--FOOTER-->
+      <footer aria-label="Footer" class="col-span-1 md:col-span-3">
         <div
-          class="border-t border-gray-100 p-6 text-center sm:flex sm:justify-between sm:text-left">
-          <p class="text-sm text-gray-500">
+          class="border-t border-neutral-100 p-6 text-center sm:flex sm:justify-between sm:text-left">
+          <p class="text-sm text-neutral-500">
             <span class="block sm:inline">All rights reserved</span>
           </p>
-          <p class="mt-2 text-sm text-gray-500 sm:order-first sm:mt-0">
+          <p class="mt-2 text-sm text-neutral-500 sm:order-first sm:mt-0">
             &copy; 2022 Massimiliano Imperiale
           </p>
-          <p class="mt-2 text-sm text-gray-500 sm:order-first sm:mt-0">
-            <a href="../index.html" class="text-blue-600 underline hover:text-blue-800">Home</a>
+          <p class="mt-2 text-sm text-neutral-500 sm:order-first sm:mt-0">
+            <a class="text-blue-600 underline hover:text-blue-800" href="../index.html">Home</a>
           </p>
         </div>
       </footer>

@@ -3,23 +3,23 @@
   <head>
     <title>Data Visualization Homework</title>
     <meta
-      name="description"
-      content="Homework exercises for the Data Visualization Course at University of Genoa" />
+      content="Homework exercises for the Data Visualization Course at UNIGE"
+      name="description" />
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <link href="style.css" rel="stylesheet" />
 
     <!-- Roboto Slab & Fira Sans -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
     <link
       href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Roboto+Slab"
       rel="stylesheet" />
   </head>
 
   <body>
-    <div class="mx-auto w-11/12 bg-white text-center">
-      <div class="mx-auto p-8">
+    <div class="mx-auto bg-white text-center lg:w-11/12">
+      <div class="mx-auto px-8 md:pt-8">
         <h1 class="px-4 py-8 text-5xl font-bold">Data Visualization</h1>
         <h2 class="pt-1 text-3xl font-bold underline decoration-green-700">Eco-benefit project</h2>
         <p class="mx-auto pt-4 text-sm text-gray-700">GROUP</p>
@@ -39,24 +39,27 @@
             here
           </a>
         </p>
-
-        <img class="inline" src="./data/d3js-ar21.svg" alt="d3 logo" width="160" height="80" />
-        <img
-          class="inline"
-          src="./data/tailwindcss-ar21.svg"
-          alt="d3 logo"
-          width="160"
-          height="80" />
-
-        <p class="mx-auto pt-4 pb-12">
-          Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi
-          exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.
-        </p>
-        <p class="mx-auto pt-4 pb-12">
-          Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi
-          exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.
-        </p>
-        <div class="px-4 py-3 sm:inline">
+        <div class="block">
+          <img alt="d3 logo" class="inline" height="80" src="./data/d3js-ar21.svg" width="160" />
+          <img
+            alt="d3 logo"
+            class="inline"
+            height="80"
+            src="./data/tailwindcss-ar21.svg"
+            width="160" />
+        </div>
+        <div class="flex flex-col md:flex-row overflow-hidden place-content-center place-items-center mt-6 mb-[8%] xl:mb-[4%]">
+          <img
+            alt="Trento tree"
+            class="w-fit sm:w-2/5 lg:w-2/4 xl:w-1/5 2xl:w-2/12"
+            src="./data/pic.webp" />
+          <div class=" p-6 text-sm border sm:border-none text-left w-fit sm:w-2/5 xl:w-1/5">
+            The urban forest in Trento contributes to local environmental quality and human health.
+            But how much eco benefit do they bring? Planting a tree is not enough, you need to take
+            care of it, wait for the time it begins to "yield" and also know where to plant it.
+          </div>
+        </div>
+        <div class="block px-4 py-3 sm:inline">
           <a class="inline-block focus:outline-none focus:ring" href="pages/assignment1.html">
             <span
               class="block border border-black bg-yellow-300 px-8 py-3 shadow-[2px_2px_0_rgb(0,0,0)] md:hover:shadow-none">
@@ -80,13 +83,13 @@
             </span>
           </a>
         </div>
-        <a class="mt-12 block" href="https://github.com/imperiale-x/data-visualization">
+        <a class="my-[6%] md:my-[3%] block" href="https://github.com/imperiale-x/data-visualization">
           <img
-            class="inline"
-            src="./data/github-icon.svg"
             alt="GitHub logo"
-            width="18"
-            height="18" />
+            class="inline"
+            height="18"
+            src="./data/github-icon.svg"
+            width="18" />
         </a>
       </div>
       <footer aria-label="Footer" class="bg-white">

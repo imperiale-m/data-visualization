@@ -1,15 +1,15 @@
 // Data
-d3.csv("../data/data2.csv", d3.autoType)
-  .then(function (data) {
+d3.csv('../data/data2.csv', d3.autoType)
+  .then((data) => {
     // console.log(data);
 
-    const svg4 = d3
-      .select("#task4")
-      .append("svg")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
-      .append("g")
-      .attr("transform", `translate(${margin.left}, ${margin.top})`);
+    const svg = d3
+      .select('#task4')
+      .append('svg')
+      .attr('viewBox', [0, 0, width + margin.l + margin.r, height + margin.t + margin.b])
+      .attr('style', 'max-width: 100%; height: auto; height: intrinsic;')
+      .append('g')
+      .attr('transform', `translate(${margin.l}, ${margin.t})`);
 
     const dataColumns = Object.keys(data[0]);
     // console.log(dataColumns);
@@ -17,7 +17,7 @@ d3.csv("../data/data2.csv", d3.autoType)
     // List of subgroups
     const subgroups = dataColumns.slice(1);
 
-    const groups = data.map(d => d["district"]);
+    const groups = data.map((d) => d['district']);
     // console.log(groups);
 
     const stackedData = d3
@@ -26,71 +26,86 @@ d3.csv("../data/data2.csv", d3.autoType)
       .offset(d3.stackOffsetExpand)
       .keys(subgroups)(data);
 
-    const max = d3.max(stackedData[stackedData.length - 1], d => d[1]);
+    const max = d3.max(stackedData[stackedData.length - 1], (d) => d[1]);
     // console.log(max);
 
     const x = d3.scaleLinear().range([0, width]).domain([0, max]).nice();
 
     const y = d3.scaleBand().range([0, height]).domain(groups).padding(0.1);
 
-    svg4
-      .append("g")
-      .attr("transform", `translate(0, ${height})`)
-      .call(d3.axisBottom(x).ticks(10, "%"))
-      .selectAll("text")
-      .attr("transform", "translate(-10,0)rotate(-45)")
-      .style("text-anchor", "end");
+    svg
+      .append('g')
+      .attr('transform', `translate(0, ${height})`)
+      .call(d3.axisBottom(x).ticks(10, '%'))
+      .selectAll('text')
+      .style('text-anchor', 'middle');
 
-    svg4.append("g").call(d3.axisLeft(y)).select(".domain").remove();
+    svg.append('g').call(d3.axisLeft(y)).select('.domain').remove();
 
     const color = d3
       .scaleOrdinal()
       .domain(subgroups)
-      .range(["#ebac23", "#b80058", "#878500", "#006e00", "#b24502", "#bdbdbd"]);
+      .range(['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#c4c4c4']);
 
-    const tooltip = d3.select("#tooltip4");
+    const tooltip = d3.select('#task4').append('div').attr('class', 'tooltip');
 
     const mouseover = function () {
-      tooltip.style("opacity", 0.9);
-      d3.select(this).style("stroke", "black");
+      tooltip.style('opacity', 0.9);
+      d3.select(this).style('stroke', 'black').style('opacity', 1);
     };
 
     const mouseout = function () {
-      tooltip.style("opacity", 0);
-      d3.select(this).style("stroke", "none");
+      tooltip.style('opacity', 0);
+      d3.select(this).style('stroke', 'none').style('opacity', 0.9);
     };
 
-    const formatter = d3.format(".2%");
+    const formatter = d3.format('.2%');
 
     const mousemove = function (event, d) {
       const subgroupName = d3.select(this.parentNode).datum().key;
       // const subgroupValue = d.data[subgroupName];
 
       tooltip
-        .html("Tree type = " + subgroupName + "<br>Count = " + formatter(d[1] - d[0]))
-        .style("top", event.pageY + "px")
-        .style("left", event.pageX + 20 + "px");
+        .html(`Tree type = <b>${subgroupName}</b><br>Count = <b>${formatter(d[1] - d[0])}</b>`)
+        .style('top', `${event.pageY}px`)
+        .style('left', `${event.pageX + 20}px`);
     };
 
-    svg4
-      .append("g")
-      .selectAll("g")
+    svg
+      .append('g')
+      .selectAll('g')
       // Enter the stack data = loop key per key = group per group
       .data(stackedData)
-      .join("g")
-      .attr("fill", d => color(d.key))
-      .selectAll("rect")
+      .join('g')
+      .attr('fill', (d) => color(d.key))
+      .selectAll('rect')
       // enter a second time = loop subgroup per subgroup to add all rectangles
-      .data(d => d)
-      .join("rect")
-      .attr("y", d => y(d.data["district"]))
-      .attr("x", d => x(d[0]))
-      .attr("width", d => x(d[1]) - x(d[0]))
-      .attr("height", y.bandwidth())
-      .on("mouseover", mouseover)
-      .on("mouseout", mouseout)
-      .on("mousemove", mousemove);
+      .data((d) => d)
+      .join('rect')
+      .attr('y', (d) => y(d.data['district']))
+      .attr('x', (d) => x(d[0]))
+      .attr('width', (d) => x(d[1]) - x(d[0]))
+      .style('stroke-width', 1)
+      .style('stroke', 'none')
+      .style('opacity', 0.9)
+      .attr('height', y.bandwidth())
+      .on('mouseover', mouseover)
+      .on('mouseout', mouseout)
+      .on('mousemove', mousemove);
+
+    // x-axis name
+    svg
+      .append('text')
+      .attr('transform', `translate(${width / 2 - 50}, ${height + margin.b - 15})`)
+      .attr('class', 'axis-name')
+      .text('NUMBER OF TREES');
+    // y-axis name
+    svg
+      .append('text')
+      .attr('transform', `translate(${-margin.l + 40}, ${height / 2}) rotate(-90)`)
+      .attr('class', 'axis-name')
+      .text('DISTRICT');
   })
-  .catch(e => {
+  .catch((e) => {
     console.log(e);
   });
