@@ -1,4 +1,8 @@
-// Task 2
+// Task 5
+// IMPLEMENTATION NOTE:
+// THE WAFFLES ARE TREATED AS A SPECIAL CASE OF A HEATMAP
+// SO THE COMPLEXITY IS ALL IN PREPARING THE DATA
+// (THE DATA MUST HAVE COORDINATES)
 // Data
 d3.csv('../data/task2.csv', d3.autoType)
   .then((data) => {
