@@ -23,7 +23,7 @@ d3.csv('../data/top6_data.csv', d3.autoType)
       .select('#a2_task3')
       .append('svg')
       .attr('viewBox', [0, 0, width + margin.l + margin.r, height + margin.t + margin.b])
-      .attr('style', 'max-width: 100%; height: auto; height: intrinsic;')
+      .attr('style', 'max-width: 100%; height: auto')
       .append('g')
       .attr('transform', `translate(${margin.l}, ${margin.t})`);
 

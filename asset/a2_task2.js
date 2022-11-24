@@ -50,7 +50,7 @@ d3.csv('../data/top6_data.csv', d3.autoType)
       .select('#a2_task2')
       .append('svg')
       .attr('viewBox', [0, 0, width + margin.l + margin.r, height + margin.t + margin.b])
-      .attr('style', 'max-width: 100%; height: auto; height: intrinsic;')
+      .attr('style', 'max-width: 100%; height: auto')
       .append('g')
       .attr('transform', `translate(${margin.l}, ${margin.t})`);
 
@@ -70,7 +70,7 @@ d3.csv('../data/top6_data.csv', d3.autoType)
       .attr('class', 'x-label');
 
     d3.selectAll('.x-label')
-      .attr('class', 'font-medium')
+      .attr('class', 'font-semibold')
       .attr('fill', (d) => color(d));
 
     // plot the y-axis

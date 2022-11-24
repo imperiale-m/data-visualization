@@ -2,13 +2,13 @@
 // Data
 d3.csv('../data/top6_data.csv', d3.autoType)
   .then((data) => {
-    console.log(data);
+    // console.log(data);
 
     const sumstat = d3.group(data, (d) => d.name);
-    console.log(sumstat);
+    // console.log(sumstat);
 
     const allKeys = [...sumstat.keys()];
-    console.log(allKeys);
+    // console.log(allKeys);
 
     const names = data.map((d) => d.name);
     const species = [...new Set(names)];
@@ -46,7 +46,7 @@ d3.csv('../data/top6_data.csv', d3.autoType)
         .select('#a2_task4')
         .append('svg')
         .attr('viewBox', [0, 0, width + margin.l + margin.r, height + margin.t + margin.b])
-        .attr('style', 'max-width: 40%; height: auto; height: intrinsic;')
+        .attr('style', 'max-width: 40%; height: auto')
         .attr('class', 'inline-block')
         .append('g')
         .attr('transform', `translate(${margin.l}, ${margin.t})`);
