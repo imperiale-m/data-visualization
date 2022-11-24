@@ -5,17 +5,17 @@ d3.csv('../data/top6_data.csv', d3.autoType)
     const sumstat = d3.flatRollup(
       data,
       (box) => {
-        const y = (k) => k['height_m'];
+        const y = (k) => k.dbh_cm;
         const q1 = d3.quantile(
-          box.map((d) => d['height_m']),
+          box.map((d) => d.dbh_cm),
           0.25,
         );
         const median = d3.quantile(
-          box.map((d) => d['height_m']),
+          box.map((d) => d.dbh_cm),
           0.5,
         );
         const q3 = d3.quantile(
-          box.map((d) => d['height_m']),
+          box.map((d) => d.dbh_cm),
           0.75,
         );
         const iqr = q3 - q1;
@@ -25,14 +25,14 @@ d3.csv('../data/top6_data.csv', d3.autoType)
         const r1 = Math.min(max, q3 + iqr * 1.5);
         box.quartiles = [q1, median, q3];
         box.range = [r0, r1];
-        box.outliers = box.filter((k) => k['height_m'] < r0 || k['height_m'] > r1);
+        box.outliers = box.filter((k) => k.dbh_cm < r0 || k.dbh_cm > r1);
         return box;
         // return { q1, median, q3, iqr, min, max };
       },
       (d) => d.name,
     );
     const xDomain = sumstat.map((d) => d[0]);
-    const yDomain = [0, d3.max(data, (d) => d['height_m'])];
+    const yDomain = [0, d3.max(data, (d) => d.dbh_cm)];
     const xRange = [0, width];
     const yRange = [height, 0];
     // console.log('domain', yDomain);
@@ -44,6 +44,8 @@ d3.csv('../data/top6_data.csv', d3.autoType)
     const xAxis = d3.axisBottom(xScale);
     const yAxis = d3.axisLeft(yScale);
 
+    // console.log(sumstat);
+
     const svg = d3
       .select('#a2_task2')
       .append('svg')
@@ -52,14 +54,24 @@ d3.csv('../data/top6_data.csv', d3.autoType)
       .append('g')
       .attr('transform', `translate(${margin.l}, ${margin.t})`);
 
+    const species = sumstat.map((d) => d[0]);
+    // console.log(species);
+    // const species = [...new Set(names)];
+    // Add a scale for bubble color
+    const color = d3.scaleOrdinal().domain(species).range(d3.schemeCategory10);
+
     // plot the x-axis
     svg
       .append('g')
       .attr('transform', `translate(0, ${height})`)
       .call(xAxis)
       .selectAll('text')
-      // .attr('transform', 'translate(-10,0)rotate(-45)')
-      .style('text-anchor', 'middle');
+      .style('text-anchor', 'middle')
+      .attr('class', 'x-label');
+
+    d3.selectAll('.x-label')
+      .attr('class', 'font-medium')
+      .attr('fill', (d) => color(d));
 
     // plot the y-axis
     svg.append('g').call(yAxis);
@@ -81,6 +93,32 @@ d3.csv('../data/top6_data.csv', d3.autoType)
       .attr('stroke', 'black')
       .style('width', 40);
 
+    const tooltip = d3.select('#a2_task2').append('div').attr('class', 'tooltip');
+
+    const mouseover = function (event, d) {
+      tooltip.style('z-index', 1);
+      tooltip.transition().style('opacity', 0.9);
+      d3.selectAll('.box').transition().duration(500).style('fill', 'gray');
+      d3.select(this).transition().duration(500).style('fill', color(d[0]));
+    };
+
+    const mouseout = function () {
+      tooltip.style('z-index', -1);
+      tooltip.transition().style('opacity', 0);
+      d3.selectAll('.box').style('fill', (d) => color(d[0]));
+    };
+
+    const mousemove = function (event, d) {
+      tooltip
+        .html(
+          `25th percentile = <b>${d[1].quartiles[0]} cm</b><br>Median = <b>${d[1].quartiles[1]} cm</b>
+           <br>75th percentile = <b>${d[1].quartiles[2]} cm</b><br>min = <b>${d[1].range[0]} cm</b>
+           <br>max = <b>${d[1].range[1]} cm</b>`,
+        )
+        .style('top', `${event.pageY}px`)
+        .style('left', `${event.pageX + 20}px`);
+    };
+
     // rectangle for the main box
     const boxWidth = 50;
     svg
@@ -92,8 +130,12 @@ d3.csv('../data/top6_data.csv', d3.autoType)
       .attr('height', (d) => yScale(d[1].quartiles[0]) - yScale(d[1].quartiles[2]))
       .attr('width', boxWidth)
       .attr('stroke', 'black')
-      .style('fill', 'steelblue')
-      .style('opacity', '1');
+      .attr('class', 'box')
+      .style('fill', (d) => color(d[0]))
+      .style('opacity', '1')
+      .on('mouseover', mouseover)
+      .on('mouseout', mouseout)
+      .on('mousemove', mousemove);
 
     // Show the median
     svg
@@ -118,16 +160,29 @@ d3.csv('../data/top6_data.csv', d3.autoType)
       .data(out)
       .join('circle')
       .attr('cx', (d) => xScale(d.name) - jitterWidth / 2 + Math.random() * jitterWidth)
-      .attr('cy', (d) => yScale(d['height_m']))
+      .attr('cy', (d) => yScale(d.dbh_cm))
       .attr('r', 4)
-      .style('fill', 'firebrick')
+      .style('fill', 'gold')
       .attr('stroke', 'black')
       .style('opacity', 0.8);
+
+    // x-axis name
+    svg
+      .append('text')
+      .attr('transform', `translate(${width / 2 - 40}, ${height + margin.b - 35})`)
+      .attr('class', 'axis-name')
+      .text('SPECIES');
+    // y-axis name
+    svg
+      .append('text')
+      .attr('transform', `translate(${-margin.l + 40}, ${height / 2}) rotate(-90)`)
+      .attr('class', 'axis-name')
+      .text('TRUNK DIAMETER (cm)');
 
     // console.log('ok=', sumstat);
     // tt = d3.groups(data, (d) => d.name)[0].slice(1);
     // console.log('tt= ', tt[0]);
-    // console.log(d3.min(tt, (d) => d[0]['height_m']));
+    // console.log(d3.min(tt, (d) => d[0]['dbh_cm']));
   })
   .catch((e) => {
     console.log(e);
