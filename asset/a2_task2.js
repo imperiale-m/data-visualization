@@ -105,7 +105,7 @@ d3.csv('../data/top6_data.csv', d3.autoType)
     const mouseout = function () {
       tooltip.style('z-index', -1);
       tooltip.transition().style('opacity', 0);
-      d3.selectAll('.box').style('fill', (d) => color(d[0]));
+      d3.selectAll('.box').transition().style('fill', (d) => color(d[0]));
     };
 
     const mousemove = function (event, d) {
