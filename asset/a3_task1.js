@@ -1,9 +1,9 @@
 d3.json('../data/trento.geojson')
   .then((data) => {
     const margin = {
-      t: 60,
+      t: 40,
       r: 60,
-      b: 60,
+      b: 40,
       l: 60,
     };
     const width = 600;
