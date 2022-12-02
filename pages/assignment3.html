@@ -1,36 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Assignment 1</title>
+    <title>Assignment 1 - Comparing Categories</title>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <link href="../style.css" rel="stylesheet" />
 
     <!-- Roboto Slab & Fira Sans -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Roboto+Slab&display=swap"
-      rel="stylesheet"
-    />
+      href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Roboto+Slab"
+      rel="stylesheet" />
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script defer src="../asset/a3_task1.js"></script>
+    <script defer src="../asset/a3_task2.js"></script>
+      <script defer src="../asset/a3_task3.js"></script>
+      <script defer src="../asset/a3_task4.js"></script>
+      <script defer src="../asset/a3_task5.js"></script>
+    <script
+      defer
+      src="https://unpkg.com/simple-statistics@7.8.0/dist/simple-statistics.min.js"></script>
   </head>
 
-  <body>
-    <div class="container mx-auto bg-white">
-      <div class="container mx-auto p-8 text-center">
-        <h1 class="text-3xl font-bold">Assignment 3</h1>
+  <body class="min-h-screen">
+    <div
+      class="mx-auto grid grid-cols-1 gap-4 bg-white pl-6 pr-8 pt-12 sm:px-8 md:grid-cols-3 lg:w-11/12">
+      <div class="col-span-1 mb-[2%] text-center text-3xl font-bold md:col-span-3 md:text-4xl">
+        <h1 class="text-stone-900">Assignment 3</h1>
+        <p class="text-stone-900">Maps</p>
       </div>
-      <footer aria-label="Footer" class="bg-white">
-        <div class="border-t border-gray-100 p-6">
-          <div class="text-center sm:flex sm:justify-between sm:text-left">
-            <p class="text-sm text-gray-500">
-              <span class="block sm:inline">All rights reserved</span>
-            </p>
-
-            <p class="mt-2 text-sm text-gray-500 sm:order-first sm:mt-0">
-              &copy; 2022 Massimiliano Imperiale
-            </p>
-          </div>
+      <!--TASK 1-->
+      <div class="col-span-1 md:col-span-2">
+        <div>
+          <p class="ml-[14%] text-xl font-bold lg:text-2xl">Choropleth map</p>
+          <p class="ml-[14%] text-sm lg:text-base">Tree abundance per district</p>
+        </div>
+        <div class="mx-auto" id="a3_task1"></div>
+      </div>
+      <div class="col-span-1 ml-[24%] pr-[14%] md:ml-0 md:py-[50%] md:pl-[20%]">
+        <p class="text-base font-bold text-stone-800">Choropleth map</p>
+        <p class="text-sm text-stone-600"></p>
+      </div>
+      <!--TASK 2-->
+      <div class="col-span-1 mt-8 md:col-span-2">
+        <div>
+          <p class="ml-[14%] text-xl font-bold lg:text-2xl">Choropleth map</p>
+          <p class="ml-[14%] text-sm lg:text-base">Tree density per district</p>
+        </div>
+        <div class="mx-auto" id="a3_task2"></div>
+      </div>
+      <div class="col-span-1 ml-[24%] pr-[14%] md:ml-0 md:py-[50%] md:pl-[20%]">
+        <p class="text-base font-bold text-neutral-800">Choropleth map</p>
+        <p class="text-sm text-neutral-600"></p>
+      </div>
+      <!--TASK 3-->
+      <div class="col-span-1 mt-8 md:col-span-2">
+        <div>
+          <p class="ml-[14%] text-xl font-bold lg:text-2xl">Choropleth map</p>
+          <p class="ml-[14%] text-sm lg:text-base">Oxygen production per district</p>
+        </div>
+        <div class="mx-auto" id="a3_task3"></div>
+      </div>
+      <div class="col-span-1 ml-[24%] pr-[14%] md:ml-0 md:py-[50%] md:pl-[20%]">
+        <p class="text-base font-bold text-neutral-800">Choropleth map</p>
+        <p class="text-sm text-neutral-600"></p>
+      </div>
+      <!--TASK 4-->
+      <div class="col-span-1 mt-8 md:col-span-2">
+        <div>
+          <p class="ml-[14%] text-xl font-bold lg:text-2xl">Dot density map</p>
+          <p class="ml-[14%] text-sm lg:text-base">lorem ipsum</p>
+        </div>
+        <div class="mx-auto" id="a3_task4"></div>
+      </div>
+      <div class="col-span-1 ml-[24%] pr-[14%] md:ml-0 md:py-[50%] md:pl-[20%]">
+        <p class="text-base font-bold text-neutral-800">Dot density map</p>
+        <p class="text-sm text-neutral-600"></p>
+      </div>
+      <!--TASK 5-->
+      <div class="col-span-1 mt-8 md:col-span-2">
+        <div>
+          <p class="ml-[14%] text-xl font-bold lg:text-2xl">Dot density map</p>
+          <p class="ml-[14%] text-sm lg:text-base">Top-10 tree species + other</p>
+        </div>
+        <div class="mx-auto" id="a3_task5"></div>
+      </div>
+      <div class="col-span-1 ml-[24%] pr-[14%] md:ml-0 md:py-[50%] md:pl-[20%]">
+        <p class="text-base font-bold text-neutral-800">Dot density map</p>
+        <p class="text-sm text-neutral-600"></p>
+      </div>
+      <!--FOOTER-->
+      <footer aria-label="Footer" class="col-span-1 md:col-span-3">
+        <div
+          class="border-t border-neutral-100 p-6 text-center sm:flex sm:justify-between sm:text-left">
+          <p class="text-sm text-neutral-500">
+            <span class="block sm:inline">All rights reserved</span>
+          </p>
+          <p class="mt-2 text-sm text-neutral-500 sm:order-first sm:mt-0">
+            &copy; 2022 Massimiliano Imperiale
+          </p>
+          <p class="mt-2 text-sm text-neutral-500 sm:order-first sm:mt-0">
+            <a class="text-blue-600 underline hover:text-blue-800" href="../index.html">Home</a>
+          </p>
         </div>
       </footer>
     </div>
