@@ -1,5 +1,6 @@
-d3.json('../data/trento.geojson')
-  .then((data) => {
+getData('a3')
+  .then((d) => {
+    const data = d[0];
     const margin = {
       t: 40,
       r: 60,

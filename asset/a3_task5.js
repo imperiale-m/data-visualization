@@ -1,4 +1,4 @@
-Promise.all([d3.json('../data/trento.geojson'), d3.json('../data/trento_trees.geojson')])
+getData('a3')
   .then((data) => {
     const margin = {
       t: 40,
@@ -82,7 +82,6 @@ Promise.all([d3.json('../data/trento.geojson'), d3.json('../data/trento_trees.ge
 
     svg
       .selectAll('points')
-      // .data(data[1].features.map((d) => d.geometry))
       .data(data[1].features)
       .join('circle')
       .attr('cx', (d) => projection(d.geometry.coordinates)[0])

@@ -1,4 +1,4 @@
-Promise.all([d3.json('../data/trento.geojson'), d3.json('../data/trento_trees.geojson')])
+getData('a3')
   .then((data) => {
     const margin = {
       t: 40,
