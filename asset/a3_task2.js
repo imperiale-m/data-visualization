@@ -1,6 +1,6 @@
-getData('a3')
-  .then((d) => {
-    const data = d[0];
+getData3_1(1)
+  .then((data) => {
+    // const data = d[0];
     const margin = {
       t: 40,
       r: 60,

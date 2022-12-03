@@ -1,11 +1,8 @@
 const promiseCache = new Map();
-function getData(dataId) {
+function getData3_1(dataId) {
   // If the promise is not stored in the cache, fetch it
   if (!promiseCache.has(dataId)) {
-    const data = Promise.all([
-      d3.json('../data/trento.geojson'),
-      d3.json('../data/trento_trees.geojson'),
-    ]);
+    const data = d3.json('../data/trento.geojson');
     // Store promise in the cache
     promiseCache.set(dataId, data);
   }
@@ -13,9 +10,9 @@ function getData(dataId) {
   return promiseCache.get(dataId);
 }
 
-getData('a3')
-  .then((d) => {
-    const data = d[0];
+getData3_1(1)
+  .then((data) => {
+    // const data = d[0];
     const margin = {
       t: 40,
       r: 60,

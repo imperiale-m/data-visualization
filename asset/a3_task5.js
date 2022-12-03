@@ -1,4 +1,4 @@
-getData('a3')
+getData3_2(1)
   .then((data) => {
     const margin = {
       t: 40,
