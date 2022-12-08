@@ -1,16 +1,15 @@
 // Task 1
-const margin = {
-  t: 20,
-  r: 100,
-  b: 80,
-  l: 100,
-};
-const width = 600;
-const height = 400;
-
-// Data
 d3.csv('../data/assignment4.csv', d3.autoType)
   .then((data) => {
+    const margin = {
+      t: 20,
+      r: 100,
+      b: 80,
+      l: 100,
+    };
+    const width = 600;
+    const height = 400;
+
     const group = d3.flatGroup(data, (d) => d.year);
     const sumstat = [...group.values()];
 
