@@ -95,7 +95,7 @@ d3.csv('../data/assignment4.csv', d3.autoType)
     }
 
     function mousemove(event, d) {
-      let text = '';
+      let text;
       switch (this.className.baseVal) {
         case 'dot dotMin':
           text = `Min: ${d.min}&degC`;
