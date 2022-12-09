@@ -61,41 +61,6 @@ d3.csv('../data/assignment4.csv', d3.autoType)
       (d) => d,
     );
 
-    const tooltip2 = d3.select('#a4_task2').append('div').attr('class', 'tooltip');
-
-    function mouseover() {
-      tooltip2.style('z-index', 1);
-      tooltip2.transition().style('opacity', 0.9);
-      d3.select(this).transition().attr('r', 6);
-    }
-
-    function mouseout() {
-      tooltip2.style('z-index', -1);
-      tooltip2.transition().style('opacity', 0);
-      d3.select(this).transition().attr('r', 4);
-    }
-
-    function mousemove(event, d) {
-      let text = '';
-      switch (this.className.baseVal) {
-        case 'dot dotMin':
-          text = `Min: ${d.min}&degC`;
-          break;
-        case 'dot dotMax':
-          text = `Max: ${d.max}&degC`;
-          break;
-        case 'dot dotMean':
-          text = `Mean: ${d.mean}&degC`;
-          break;
-        default:
-          text = 'Error';
-      }
-      tooltip2
-        .html(`<b>${months[d.month - 1]} ${d.year}</b><br>${text}`)
-        .style('top', `${event.pageY}px`)
-        .style('left', `${event.pageX + 20}px`);
-    }
-
     // The radial line function
     const radarLine = d3
       .lineRadial()
@@ -193,7 +158,7 @@ d3.csv('../data/assignment4.csv', d3.autoType)
         .attr('cy', (d, i) => rScale(d.mean) * Math.sin(angleSlice * i - Math.PI / 2))
         .style('fill', (d) => colors(d.year))
         .style('fill-opacity', 1)
-        .style('stroke', 'none')
+        .style('stroke', 'none');
 
       const test = d3.selectAll('.textSelected2');
       const rect = d3.selectAll('.check2');
