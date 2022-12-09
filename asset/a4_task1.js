@@ -80,17 +80,17 @@ d3.csv('../data/assignment4.csv', d3.autoType)
       (d) => d,
     );
 
-    const tooltip = d3.select('#a4_task1').append('div').attr('class', 'tooltip');
+    const tooltip1 = d3.select('#a4_task1').append('div').attr('class', 'tooltip');
 
     function mouseover() {
-      tooltip.style('z-index', 1);
-      tooltip.transition().style('opacity', 0.9);
+      tooltip1.style('z-index', 1);
+      tooltip1.transition().style('opacity', 0.9);
       d3.select(this).transition().attr('r', 6);
     }
 
     function mouseout() {
-      tooltip.style('z-index', -1);
-      tooltip.transition().style('opacity', 0);
+      tooltip1.style('z-index', -1);
+      tooltip1.transition().style('opacity', 0);
       d3.select(this).transition().attr('r', 4);
     }
 
@@ -109,13 +109,13 @@ d3.csv('../data/assignment4.csv', d3.autoType)
         default:
           text = 'Error';
       }
-      tooltip
+      tooltip1
         .html(`<b>${months[d.month - 1]} ${d.year}</b><br>${text}`)
         .style('top', `${event.pageY}px`)
         .style('left', `${event.pageX + 20}px`);
     }
 
-    const legend = svg.append('g').attr('class', 'legends').selectAll('.legend').data(years);
+    const legend = svg.append('g').attr('id', 'legend1').selectAll('.legend1').data(years);
     function redrawChart() {
       svg.selectAll('.line').remove();
       svg.selectAll('.dot').remove();
@@ -175,8 +175,7 @@ d3.csv('../data/assignment4.csv', d3.autoType)
         .attr('cy', (d) => y(d.mean))
         .attr('r', 3)
         .style('fill', (d) => colors(d.year))
-        .style('stroke', 'none')
-        .style('stroke-width', '0.5px');
+        .style('stroke', 'none');
 
       svg
         .selectAll('.dot')
@@ -184,8 +183,8 @@ d3.csv('../data/assignment4.csv', d3.autoType)
         .on('mouseout', mouseout)
         .on('mousemove', mousemove);
 
-      const test = d3.selectAll('.textSelected');
-      const rect = d3.selectAll('rect');
+      const test = d3.selectAll('.textSelected1');
+      const rect = d3.selectAll('.check1');
       function toggle(element) {
         d3.select(this).classed('disabled', !yearsDict.get(element));
       }
@@ -206,7 +205,7 @@ d3.csv('../data/assignment4.csv', d3.autoType)
       .attr('y', (d, i) => 20 * i)
       .attr('width', 12)
       .attr('height', 12)
-      .attr('class', 'check')
+      .attr('class', 'check1')
       .style('fill', (d) => colors(d))
       .style('cursor', 'pointer')
       .on('click', clickLegendHandler);
@@ -215,15 +214,15 @@ d3.csv('../data/assignment4.csv', d3.autoType)
       .attr('x', width + margin.r - 60)
       .attr('y', (d, i) => 20 * i + 7)
       .text((d) => d)
-      .attr('class', 'textSelected')
+      .attr('class', 'textSelected1')
       .style('font-size', '12px')
       .style('alignment-baseline', 'middle');
 
-    const l = d3.select('.legends');
+    const l = d3.select('#legend1');
     l.append('text')
       .attr('x', width + margin.r - 80)
       .attr('y', 20 * 8 + 12)
-      .attr('class', 'hide-all-option underline hover:no-underline')
+      .attr('class', 'underline hover:no-underline')
       .style('fill', 'steelblue')
       .style('cursor', 'pointer')
       .text('hide all')
@@ -237,7 +236,7 @@ d3.csv('../data/assignment4.csv', d3.autoType)
     l.append('text')
       .attr('x', width + margin.r - 40)
       .attr('y', 20 * 8 + 12)
-      .attr('class', 'show-all-option underline hover:no-underline')
+      .attr('class', 'underline hover:no-underline')
       .style('fill', 'steelblue')
       .style('cursor', 'pointer')
       .text('show all')
