@@ -2,13 +2,13 @@
 d3.csv('../data/assignment4_task3.csv', d3.autoType)
   .then((data) => {
     const margin = {
-      t: 60,
-      r: 100,
-      b: 40,
+      t: 50,
+      r: 60,
+      b: 60,
       l: 100,
     };
-    const width = 600;
-    const height = 500;
+    const width = 500;
+    const height = 400;
 
     // append the svg object to the div with id #task1
     const svg = d3
@@ -44,11 +44,6 @@ d3.csv('../data/assignment4_task3.csv', d3.autoType)
       'NOV',
       'DEC',
     ];
-
-    // const domMin = d3.extent(data, (d) => d.min);
-    // const domMax = d3.extent(data, (d) => d.max);
-    // const domains = [...domMin, ...domMax];
-    // const dom = [d3.min(domains), d3.max(domains)];
 
     // Add X axis
     const x = d3.scaleLinear([-20, 45], [0, width]).nice();
@@ -127,6 +122,19 @@ d3.csv('../data/assignment4_task3.csv', d3.autoType)
       updateChart(+year);
     });
     updateChart(1993);
+
+    // x-axis name
+    svg
+      .append('text')
+      .attr('transform', `translate(${width / 2 - 40}, ${height + margin.b - 20})`)
+      .attr('class', 'axis-name')
+      .text('Degrees (Celsius)');
+    // y-axis name
+    svg
+      .append('text')
+      .attr('transform', `translate(${-margin.l + 50}, ${height / 2 + 30}) rotate(-90)`)
+      .attr('class', 'axis-name')
+      .text('Month');
   })
   .catch((e) => {
     console.log(e);
