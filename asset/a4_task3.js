@@ -1,4 +1,4 @@
-// Task 2
+// Task 3
 d3.csv('../data/assignment4_task3.csv', d3.autoType)
   .then((data) => {
     const margin = {
